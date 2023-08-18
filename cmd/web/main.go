@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"database/sql"
 	"flag"
 	"html/template"
@@ -63,10 +64,20 @@ func main() {
 		sessionManager: sessionManager,
 	}
 
+	tlsConfig := &tls.Config{
+		CurvePreferences: []tls.CurveID{tls.X25519, tls.CurveP256},
+	}
+
 	svr := &http.Server{
-		Addr:     *addr,
-		Handler:  app.routes(),
-		ErrorLog: app.errLog,
+		Addr:      *addr,
+		Handler:   app.routes(),
+		ErrorLog:  app.errLog,
+		TLSConfig: tlsConfig,
+
+		IdleTimeout: time.Minute,
+		ReadTimeout: 5 * time.Second,
+		// It's sensible to set WriteTimeout Greater than ReadTimeout
+		WriteTimeout: 10 * time.Second,
 	}
 
 	app.infoLog.Printf("Starting server on %s", *addr)
