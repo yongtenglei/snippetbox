@@ -51,6 +51,7 @@ func main() {
 	sessionManager := scs.New()
 	sessionManager.Store = mysqlstore.New(db)
 	sessionManager.Lifetime = 12 * time.Hour
+	sessionManager.Cookie.Secure = true
 
 	app := application{
 		infoLog: infoLog,
@@ -69,7 +70,7 @@ func main() {
 	}
 
 	app.infoLog.Printf("Starting server on %s", *addr)
-	err = svr.ListenAndServe()
+	err = svr.ListenAndServeTLS("./tls/cert.pem", "./tls/key.pem")
 	app.errLog.Fatal(err)
 }
 
