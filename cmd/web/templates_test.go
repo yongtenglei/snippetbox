@@ -3,6 +3,8 @@ package main
 import (
 	"testing"
 	"time"
+
+	"rey.com/snippetbox/internal/assert"
 )
 
 func TestHumanDate(t *testing.T) {
@@ -46,9 +48,8 @@ func TestHumanDate(t *testing.T) {
 		// and anonymous function containing the actual test for each case.
 		t.Run(tt.name, func(t *testing.T) {
 			hd := humanDate(tt.tm)
-			if hd != tt.want {
-				t.Errorf("got %q; want %q", hd, tt.want)
-			}
+
+			assert.Equal(t, hd, tt.want)
 		})
 	}
 }
