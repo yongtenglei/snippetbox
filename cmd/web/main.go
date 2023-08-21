@@ -68,6 +68,10 @@ func main() {
 
 	tlsConfig := &tls.Config{
 		CurvePreferences: []tls.CurveID{tls.X25519, tls.CurveP256},
+		// if you allow https request and set minimum version to TLS 1.3
+		// Then you do not need any other additional mitigation against
+		// CSRF attacks (like justinas/nosurf) besides alexedwards/scs
+		// MinVersion:       tls.VersionTLS13,
 	}
 
 	svr := &http.Server{
