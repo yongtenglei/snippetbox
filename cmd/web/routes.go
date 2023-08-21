@@ -26,6 +26,7 @@ func (app *application) routes() http.Handler {
 	router.Handler(http.MethodPost, "/user/signup", dynamic.ThenFunc(app.userSignupPost))
 	router.Handler(http.MethodGet, "/user/login", dynamic.ThenFunc(app.userLogin))
 	router.Handler(http.MethodPost, "/user/login", dynamic.ThenFunc(app.userLoginPost))
+	router.Handler(http.MethodGet, "/about", dynamic.ThenFunc(app.about))
 
 	protected := dynamic.Append(app.requireAuthentication)
 
