@@ -32,3 +32,15 @@ You need to know the place on your computer where the source code for the GO sta
 
 The `generate_cert.go` tool, can be found under `/usr/local/go/src/crypto/tls` if you use Linux. It should be located under `/usr/local/Cellar/go/<version>/libexec/src/crypto/tls` or a similar path if you use MacOS instead and install GO via Homebrew.
 
+## Embedded file version
+Typically, the program will serve and load static files from disc despite we construct a cache to speed this process. `Embedidng files` is the another way to go. You can find this version in `efs` branch.
+
+To run that, you could say:
+```bash
+go build -o /tmp/web ./cmd/web/ # web is the binary name, ./cmd/web/ is where the code entry is.
+cp -r ./tls /tmp # for certificate
+cd /tmp/
+./web
+```
+
+
