@@ -2,13 +2,14 @@
 
 ## Tech used here
 | item            | tech                                                                        |
-|-----------------|-----------------------------------------------------------------------------|
+|:-----------------:|:-----------------------------------------------------------------------------:|
 | router          | [julienschmidt/httprouter](https://github.com/julienschmidt/httprouter)     |
 | middleware     | [justinas/alice](https://github.com/justinas/alice)                         |
 | form resolver   | [go-playground/form/v4](https://github.com/go-playground/form)
 | cryptography    | [golang.org/x/crypto](https://pkg.go.dev/golang.org/x/crypto)
 | session manager | [alexedwards/scs/v2](https://github.com/alexedwards/scs)                 |
 | session storage | [alexedwards/scs/mysqlstore](https://github.com/alexedwards/scs/tree/master/mysqlstore) |
+|Token-based CSRF mitagation | [justinas/nosurf](https://github.com/justinas/nosurf)|
 
 ## TLS enabled
 This project enabled TLS by default, generate your own self-signed certificate for dev purpose.
